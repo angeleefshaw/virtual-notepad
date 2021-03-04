@@ -25,7 +25,7 @@ $(document).ready(function () {
 
   //getting all notes from the db 
   $.ajax ({
-    url: "/notes",
+    url: "/api/notes",
     type: "GET"
   }).then(function(response) {
     console.log(response)
