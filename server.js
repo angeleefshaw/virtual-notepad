@@ -7,6 +7,8 @@ var PORT = process.env.PORT || 8080;
 
 var app = express();
 
+app.use(logger("dev"));
+
 const db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
@@ -37,7 +39,8 @@ app.get('/notes', function(req, res) {
 app.get('/api/notes', function(req, res) {
   db.Note.find({})
   .then(dbNote => {
-    res.json(dbNote)
+    console.log(dbNote)
+    // res.json(dbNote)
   })
 })
 
