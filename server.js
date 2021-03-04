@@ -1,44 +1,55 @@
-var express = require("express");
+var express = require('express');
 var path = require('path');
-var app = express();
-const fs = require("fs"); 
+const logger = require("morgan");
+const mongoose = require("mongoose");
 
 var PORT = process.env.PORT || 8080;
-//made the public static and accessible instead of css
-app.use('/public', express.static('public'));
 
-// Sets up the Express app to handle data parsing
+var app = express();
+
+const db = require("./models");
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-  
+app.use(express.static("public"));
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+   useNewUrlParser: true,
+   useUnifiedTopology: true,
+   useCreateIndex: true,
+   useFindAndModify: false
+  }
+);
+
+ 
 //HTML routes
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/index.html'));
+})
+
 app.get('/notes', function(req, res) {
-  const notes = require("./db/db"); 
-  res.render(path.join(__dirname + '/public/notes.ejs'), {notes : notes})
+  res.sendFile(path.join(__dirname + '/public/notes.html'));
 })
 
 
-app.get(`*`, function(req, res) {
-  res.render(path.join(__dirname + '/public/index.ejs'))
+//api routes
+app.get('/api/notes', function(req, res) {
+  db.Note.find({})
+  .then(dbNote => {
+    res.json(dbNote)
+  })
 })
 
+app.post('/api/notes', function(req, res) {
+  console.log(req.body);
+}) 
 
-app.post(`/api/notes`, function(req, res) {
-
-  }; 
-
-  notes.push(newNote); 
-    
-  // Writing to a file 
-  fs.writeFile(path.join(__dirname + '/db/db.json'), JSON.stringify(notes), err => { 
-      
-      if (err) throw err;  
-
-      res.redirect('/notes/');
-  }); 
+app.delete('/api/notes/:id', function (req, res) {
+  console.log(req.params)
 })
 
+ 
 
 
 //Listener
