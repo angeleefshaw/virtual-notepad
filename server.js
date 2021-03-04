@@ -36,7 +36,7 @@ app.get('/notes', function(req, res) {
 
 
 //api routes
-app.get('/api/notes', function(req, res) {
+app.get('/notes', function(req, res) {
   db.Note.find({})
   .then(dbNote => {
     console.log(dbNote)
