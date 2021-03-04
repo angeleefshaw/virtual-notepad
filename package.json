@@ -1,21 +1,26 @@
 {
-  "name": "note-taker",
+  "name": "virtual-notepad",
   "version": "1.0.0",
-  "description": "",
+  "description": "A place to take notes",
   "main": "server.js",
-  "scripts": {
-    "start": "./node_modules/.bin/nodemon --ignore 'db/*.json' server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.11.18",
-    "morgan": "^1.10.0",
-    "path": "^0.12.7"
+    "morgan": "^1.10.0"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angeleefshaw/virtual-notepad.git"
+  },
+  "author": "angelee shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angeleefshaw/virtual-notepad/issues"
+  },
+  "homepage": "https://github.com/angeleefshaw/virtual-notepad#readme"
 }
