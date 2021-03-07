@@ -31,13 +31,14 @@ app.get('/', function(req, res) {
 })
 
 app.get('/notes', function(req, res) {
+  
   res.sendFile(path.join(__dirname + '/public/notes.html'));
 })
 
 
 //api routes
 app.get('/api/notes', function(req, res) {
-  db.Note.find({})
+  db.AwsNote.find({})
   .then(dbNote => {
     console.log(dbNote)
     // res.json(dbNote)

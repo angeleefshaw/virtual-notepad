@@ -1,3 +1,3 @@
 module.exports = {
-    Note: require("./notes")
+    AwsNote: require("./notes")
 }

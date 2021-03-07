@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 let db = require("../models");
 
-mongoose.connect("mongodb://localhost/notesdb", {
+mongoose.connect("mongodb://localhost/awsnote", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
@@ -37,8 +37,8 @@ let noteSeed = [
     }
 ]
 
-db.Note.deleteMany({})
-  .then(() => db.Note.collection.insertMany(noteSeed))
+db.AwsNote.deleteMany({})
+  .then(() => db.AwsNote.collection.insertMany(noteSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
